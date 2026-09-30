@@ -38,10 +38,17 @@ Postman ---> localhost:8080 ---> Spring Boot(IntelliJ 실행)
 3. IntelliJ에서 `PracticeApplication` 실행 (localhost:8080)
 4. Postman에서 `postman/docker-spring-api-practice.postman_collection.json` import 후 요청 호출
 
-## 실습 시나리오
+## Postman으로 확인하기
 
-1. **POST /todos** — 할 일 하나 생성 (201 응답으로 생성된 id 확인)
-2. **GET /todos** — 방금 만든 할 일이 목록에 있는지 확인
+Body와 상태 코드를 같이 봐요
+
+| 하는 일 | 요청 | 상태 코드 |
+| --- | --- | --- |
+| 서버 확인 | GET /hello | 200 |
+| 추가 | POST /todos | 201 |
+| 목록 조회 | GET /todos | 200 |
+| 미션 · 없는 id 조회 | GET /todos/9999 | 404 |
+| 미션 · 빈 title로 추가 | POST /todos | 400 |
 
 ### 볼륨 효과 확인
 
@@ -50,11 +57,6 @@ docker compose restart
 ```
 
 재시작 후 Postman에서 **GET /todos**를 다시 호출해서 데이터가 그대로 남아있는지 확인해보세요. (named volume 덕분에 컨테이너를 껐다 켜도 데이터는 유지됩니다.)
-
-## 미션
-
-- **미션 A**: `GET /todos/9999` 호출 → 없는 id라 `404` 응답이 오는지 확인
-- **미션 B**: `POST /todos`에 `title`을 빈 문자열로 보내기 → 검증 실패로 `400` 응답이 오는지 확인
 
 ## API 목록
 
