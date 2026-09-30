@@ -42,11 +42,6 @@ Postman ---> localhost:8080 ---> Spring Boot(IntelliJ 실행)
 
 1. **POST /todos** — 할 일 하나 생성 (201 응답으로 생성된 id 확인)
 2. **GET /todos** — 방금 만든 할 일이 목록에 있는지 확인
-3. **DB에서 직접 확인** — 컨테이너 안에 들어가서 실제로 저장됐는지 확인
-   ```bash
-   docker exec -it practice-mysql mysql --default-character-set=utf8mb4 -ucow -pcowpass practice -e "SELECT * FROM todos;"
-   ```
-   (`--default-character-set=utf8mb4`를 빼면 터미널에 한글이 깨져 보일 수 있습니다. DB에는 정상적으로 저장돼 있습니다.)
 
 ### 볼륨 효과 확인
 
@@ -54,7 +49,7 @@ Postman ---> localhost:8080 ---> Spring Boot(IntelliJ 실행)
 docker compose restart
 ```
 
-재시작 후 `GET /todos`로 다시 조회해서 데이터가 그대로 남아있는지 확인해보세요. (named volume 덕분에 컨테이너를 껐다 켜도 데이터는 유지됩니다.)
+재시작 후 Postman에서 **GET /todos**를 다시 호출해서 데이터가 그대로 남아있는지 확인해보세요. (named volume 덕분에 컨테이너를 껐다 켜도 데이터는 유지됩니다.)
 
 ## 미션
 
