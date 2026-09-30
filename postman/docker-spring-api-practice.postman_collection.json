@@ -1,0 +1,100 @@
+{
+	"info": {
+		"name": "docker-spring-api-practice",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080"
+		}
+	],
+	"item": [
+		{
+			"name": "GET /hello",
+			"request": {
+				"method": "GET",
+				"url": "{{baseUrl}}/hello"
+			}
+		},
+		{
+			"name": "POST /todos",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"title\": \"도커 공부하기\",\n  \"done\": false\n}"
+				},
+				"url": "{{baseUrl}}/todos"
+			}
+		},
+		{
+			"name": "GET /todos",
+			"request": {
+				"method": "GET",
+				"url": "{{baseUrl}}/todos"
+			}
+		},
+		{
+			"name": "GET /todos/1",
+			"request": {
+				"method": "GET",
+				"url": "{{baseUrl}}/todos/1"
+			}
+		},
+		{
+			"name": "PUT /todos/1",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"title\": \"도커 공부 끝내기\",\n  \"done\": true\n}"
+				},
+				"url": "{{baseUrl}}/todos/1"
+			}
+		},
+		{
+			"name": "DELETE /todos/1",
+			"request": {
+				"method": "DELETE",
+				"url": "{{baseUrl}}/todos/1"
+			}
+		},
+		{
+			"name": "[미션 A] GET /todos/9999 (404 확인)",
+			"request": {
+				"method": "GET",
+				"url": "{{baseUrl}}/todos/9999"
+			}
+		},
+		{
+			"name": "[미션 B] POST /todos - title 빈 문자열 (400 확인)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"title\": \"\",\n  \"done\": false\n}"
+				},
+				"url": "{{baseUrl}}/todos"
+			}
+		}
+	]
+}

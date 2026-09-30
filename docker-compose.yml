@@ -1,0 +1,25 @@
+services:
+  mysql:
+    image: mysql:8.4
+    container_name: practice-mysql
+    ports:
+      - "3306:3306" # 로컬 3306 -> 컨테이너 3306, Spring Boot가 localhost:3306으로 접속
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass # root 계정 비밀번호
+      MYSQL_DATABASE: practice # 앱이 사용할 기본 데이터베이스
+      MYSQL_USER: cow # 앱 전용 계정 (application.yml과 일치해야 함)
+      MYSQL_PASSWORD: cowpass # 앱 전용 계정 비밀번호
+      TZ: Asia/Seoul # 컨테이너 타임존
+    command:
+      - --character-set-server=utf8mb4 # 한글 등 멀티바이트 문자 지원
+      - --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - mysql-data:/var/lib/mysql # named volume, 컨테이너를 지웠다 다시 띄워도 데이터 유지
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-uroot", "-prootpass"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+volumes:
+  mysql-data:

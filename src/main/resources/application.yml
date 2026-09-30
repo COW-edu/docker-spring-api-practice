@@ -1,0 +1,15 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/practice?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: cow # docker-compose.yml의 MYSQL_USER와 동일해야 함
+    password: cowpass # docker-compose.yml의 MYSQL_PASSWORD와 동일해야 함
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
